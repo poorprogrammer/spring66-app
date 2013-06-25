@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+ 
+<sqlMap>
+ 
+    <typeAlias type = "com.spring66.toturial.entity.Users" alias = "user"/>
+ 
+    <resultMap class = "user" id = "result">
+        <result property = "usrId" column = "USR_ID"/>
+        <result property = "usrName" column = "USR_NAME"/>
+        <result property = "usrPwd" column = "USR_PWD"/>
+        <result property = "usrLevel" column = "USR_LEVEL"/>
+        <result property = "usrFirstLogin" column = "USR_FIRST_LOGIN"/>
+        <result property = "regDate" column = "REG_DATE"/>
+        <result property = "logDate" column = "LOG_DATE"/>
+    </resultMap>
+    
+    <select id="selectAllUser" resultMap="result">
+        select * from users
+    </select>
+    <select id="getUserById" resultMap="result" parameterClass="String" >
+        select USR_ID, USR_NAME, USR_PWD, USR_LEVEL, USR_FIRST_LOGIN, REG_DATE, LOG_DATE
+        from users
+        where USR_ID = #value#
+    </select>
+    
+    <insert id="insertUser" parameterClass="user" >
+        insert into users (USR_ID, USR_NAME, USR_PWD, USR_LEVEL, USR_FIRST_LOGIN, REG_DATE, LOG_DATE)
+        values (#usrId:CHAR#, #usrName:VARCHAR#, #usrPwd:VARCHAR#, #usrLevel:INTEGER#,
+        #usrFirstLogin:INTEGER#, #regDate:TIMESTAMP#, #logDate:TIMESTAMP#)
+    </insert>
+    
+ 
+</sqlMap>
