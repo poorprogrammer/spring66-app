@@ -22,5 +22,5 @@
     <bean id="userDao" class="com.spring66.tutorial.dao.impl.UserDaoImpl">
         <property name="sqlMapClient" ref="sqlMapClient"/>
         <property name="dataSource" ref="dataSource"/>
-    </bean>
+    </bean> 
 </beans>
